@@ -40,6 +40,31 @@ def notify(title, body):
         except:  # noqa: E722
             logging.error("Failed sending PushOver notification.  Continueing processing...")
 
+def scan_lms():
+    """Trigger a media scan on LMS"""
+
+    logging.info("Sending LMS scan request")
+    url = "http://localhost:9000/settings/index.html?p0=rescan"
+
+    try:
+        req = requests.get(url)
+        if req.status_code > 299:
+            req.raise_for_status()
+        logging.info("LMS Library Scan request successful")
+    except requests.exceptions.HTTPError:
+        logging.error("LMS Library Scan request failed with status code: " + str(req.status_code))
+
+def announce(message):
+    logging.info("Triggering TTS Announcement" + str(message))
+    announceUrl = "http://testing:password@192.168.0.77/dev/sps/io/TTSInput/" + str(message)
+
+    try:
+        req = requests.get(announceUrl)
+        if req.status_code > 299:
+            req.raise_for_status()
+        logging.info("TTS Announcement trigger successful")
+    except requests.exceptions.HTTPError:
+        logging.error("TTS Announcement request failed with status code: " + str(req.status_code))
 
 def scan_emby():
     """Trigger a media scan on Emby"""
@@ -262,3 +287,4 @@ def set_permissions(directory_to_traverse):
         err = "Permissions setting failed as: " + str(e)
         logging.error(err)
         return False
+

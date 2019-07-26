@@ -86,13 +86,14 @@ def main(logfile, disc):
 
     identify.identify(disc, logfile)
 
-    log_arm_params(disc)
+    # log_arm_params(disc)
 
     if disc.disctype in ["dvd", "bluray"]:
         utils.notify("ARM notification", "Found disc: " + str(disc.videotitle) + ". Video type is "
                      + str(disc.videotype) + ". Main Feature is " + str(cfg['MAINFEATURE']) + ".")
     elif disc.disctype == "music":
         utils.notify("ARM notification", "Found music CD: " + disc.label + ". Ripping all tracks")
+        utils.announce("Found music CD: " + disc.label + ". Ripping all tracks")
     elif disc.disctype == "data":
         utils.notify("ARM notification", "Faound data disc.  Copying data.")
     else:
@@ -235,7 +236,9 @@ def main(logfile, disc):
     elif disc.disctype == "music":
         if utils.rip_music(disc, logfile):
             utils.notify("ARM notification", "Music CD: " + disc.label + " processing complete.")
-            utils.scan_emby()
+            # utils.scan_emby()
+            utils.scan_lms()
+            utils.announce("Finished ripping music cd " + disc.label)
         else:
             logging.info("Music rip failed.  See previous errors.  Exiting.")
 

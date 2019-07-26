@@ -1,5 +1,12 @@
 # Automatic Ripping Machine (ARM)
 
+#############
+This has been modified for my environment and use with MusicServer4Lox and Loxone.
+
+It can announce TTS when the disk has finished ripping and also triggers a logitech media server scan after ripping
+This is here mainly as a backup for my environment, Paths, Url's, VIs etc will need adjusting if you plan on using it.
+#############
+
 [![Build Status](https://travis-ci.org/automatic-ripping-machine/automatic-ripping-machine.svg?branch=v2_master)](https://travis-ci.org/automatic-ripping-machine/automatic-ripping-machine)
 
 ## Note if upgrading from v2_master to v2_fixes
