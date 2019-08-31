@@ -1,5 +1,5 @@
 .vscode/settings.json
-arm.conf.yaml
+# arm.conf.yaml
 logs/*
 *.log
 test.sh
@@ -14,4 +14,4 @@ removed/*
 arm.conf
 *.pyc
 .gitignore
-arm.yaml
+# arm.yaml
